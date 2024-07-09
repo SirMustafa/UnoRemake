@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5906f4910894e04488abbc07095f8f84, type: 3}
+  m_Name: GameData
+  m_EditorClassIdentifier: 
+  PlayerCount: 3
+  redNumber: {fileID: 21300000, guid: d64c26ed4d4b09141b2c420911abd56f, type: 3}
+  greenNumber: {fileID: 21300000, guid: d24ce9ca4b3a6584395b48ac4004df32, type: 3}
+  blueNumber: {fileID: 21300000, guid: 05002c9b30aeb0e4198b8be37412d023, type: 3}
+  yellowNumber: {fileID: 21300000, guid: 71df1ffbb65faab4a91df459a2c4838d, type: 3}
+  skip: {fileID: 21300000, guid: bc58d59dce1d6a84fbfa2285c21785ae, type: 3}
+  reverse: {fileID: 21300000, guid: bf6d4b62542a57c44953dfefedb52337, type: 3}
+  drawTwo: {fileID: 21300000, guid: fe00657c3ce5a684abf75eaa98e1f436, type: 3}
+  wild: {fileID: 21300000, guid: 06eed680d64c1fd4ea3f230997fb530b, type: 3}
+  wildDrawFour: {fileID: 21300000, guid: 9ac1a1fdfb2a90a4098f911cb4a8d830, type: 3}
+  skipHandUnenable: {fileID: -9042089049681987918, guid: 91e6bab27f006104a8506416c4a75ff0, type: 3}
+  skipHandEnable: {fileID: 7914745318422256654, guid: 6a46e42920cdc0f46a131b6fe9dea541, type: 3}
+  PullCardUnenable: {fileID: -3729062527227505180, guid: 8ca932b67581d4f49b7904082d1977c6, type: 3}
+  PullCardEnable: {fileID: -6226224038422072502, guid: c5efbc1a3a519c746a8fdb06a5c71daa, type: 3}
+  Sprites:
+  - {fileID: 8882303007990571554, guid: 85436b2d746e0714fb4e1a7a6aff6c65, type: 3}
+  - {fileID: 3408717571145459868, guid: f2d7cb92bb34b544d843bad16dd69687, type: 3}
+  - {fileID: 2670164986882087280, guid: 98acdb711cc2caf44ba186493f849c57, type: 3}
+  - {fileID: 3091530518629734418, guid: 66dbe430bcaefff46859caddf0e6bd34, type: 3}
+  - {fileID: 7156978398518124622, guid: 745995f5bdefec043b1242b45ecc6624, type: 3}
+  - {fileID: -7119072624119840826, guid: c542a39a4adf77c46999d8e5688c41a5, type: 3}
+  - {fileID: 7938112636017074093, guid: 441c6712de2bc82489dc9a1eef7b2a2a, type: 3}
+  - {fileID: -117381706063063591, guid: 26d00183cb44fb04c90b8acdccfa3545, type: 3}
+  - {fileID: -2903230935042027398, guid: 83a2a5795ceb1e24b91255f209034b4d, type: 3}
+  - {fileID: -3749740228694047907, guid: a22378742be20dc48acd4ad01e0cbb3f, type: 3}
+  - {fileID: 9014905429810406996, guid: 68e3c594fbd4f2844b7802ea689c2b60, type: 3}
+  - {fileID: 2759625832949664974, guid: 51a0f44c07c9b2a4fbdcd6a69e347283, type: 3}
+  - {fileID: 6047752347147467583, guid: 88448ddb260b26449b57c892dafa17c2, type: 3}
