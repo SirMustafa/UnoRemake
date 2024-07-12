@@ -51,8 +51,9 @@ public class GameManager : MonoBehaviour
         {
             GameObject aiPlayer = Instantiate(aiPlayersPrefab, aiPlayersPositions[i].position, Quaternion.identity, gameCanvas);
             aiPlayer.GetComponent<RectTransform>().anchoredPosition = aiPlayersPositions[i].anchoredPosition;
-            aiPlayer.GetComponent<AiController>().SetMyskin();
-            aiPlayer.GetComponent<AiController>().myId = i+1;
+            AiController aiComponent = aiPlayer.GetComponent<AiController>();
+            aiComponent.SetMyskin();
+            aiComponent.myId = i + 1;
             AllPlayers.Add(aiPlayer);
         }
     }
@@ -64,7 +65,7 @@ public class GameManager : MonoBehaviour
             for (int j = 0; j < 7; j++)
             {
                 yield return StartCoroutine(giveCardAnim(i));
-                AllPlayers[i].GetComponent<ISetStates>().pullCard(); 
+                AllPlayers[i].GetComponent<ISetStates>().pullCard();
             }
         }
 
@@ -72,8 +73,10 @@ public class GameManager : MonoBehaviour
         CardPool.CardPoolInstance.MoveMe();
         PullButton.GetComponent<PullRequestButton>().MoveMe();
         yield return new WaitForSeconds(0.5f);
-        MidPlace.MidPlaceInstance.pullCard(CardPool.CardPoolInstance.RandomCard());
+        MidPlace.MidPlaceInstance.Beginning(CardPool.CardPoolInstance.RandomCard());
         yield return new WaitForSeconds(0.5f);
+        PullButton.Enable();
+        SkipButton.Enable();
     }
     public IEnumerator giveCardAnim(int whichPlayer)
     {
@@ -86,13 +89,26 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator DrawCard(int amount)
     {
+        int j;
+        if(isClockSide)
+        {
+            j = 1;
+        }
+        else
+        {
+            j = -1;
+        }
+
         for (int i = 0; i < amount; i++)
         {
-            yield return StartCoroutine(giveCardAnim(whichPlayerOnList));
-            AllPlayers[whichPlayerOnList].GetComponent<ISetStates>().pullCard();
+            yield return StartCoroutine(giveCardAnim(whichPlayerOnList + j));
+            AllPlayers[whichPlayerOnList + j].GetComponent<ISetStates>().pullCard();
             yield return new WaitForSeconds(0.2f);
-        }
-        ChangeTurn();
+            if(i == amount - 1)
+            {
+                ChangeTurn();
+            }
+        } 
     }
     public void ReverseCard()
     {
@@ -115,28 +131,27 @@ public class GameManager : MonoBehaviour
         else
         {
             currentPlayerTurn--;
-        }   
+        }
         ChangeTurn();
     }
     public void ChangeColor()
     {
-        int numPlayers = AllPlayers.Count;
-        int currentIndex = (int)currentPlayerTurn;
-
-        if (isClockSide)
-        {
-            int previousIndex = (currentIndex - 1 + numPlayers) % numPlayers;
-            AllPlayers[previousIndex].GetComponent<ISetStates>().chooseColor();
-        }
-        else
-        {
-            int nextIndex = (currentIndex + 1) % numPlayers;
-            AllPlayers[nextIndex].GetComponent<ISetStates>().chooseColor();
-        }
+        AllPlayers[(int)currentPlayerTurn].GetComponent<ISetStates>().chooseColor();
     }
 
     public void ChangeTurn()
     {
+        if (isClockSide)
+        {
+            currentPlayerTurn = (playersTurns)(((int)currentPlayerTurn + 1) % playersCount);
+        }
+        else
+        {
+            currentPlayerTurn = (playersTurns)(((int)currentPlayerTurn - 1 + playersCount) % playersCount);
+        }
+
+        whichPlayerOnList = (int)currentPlayerTurn;
+
         if (currentPlayerTurn != playersTurns.Player)
         {
             PlayerController.PlayerControllerinstance.stopPlay();
@@ -150,15 +165,5 @@ public class GameManager : MonoBehaviour
         }
 
         AllPlayers[(int)currentPlayerTurn].GetComponent<ISetStates>().playTurn();
-
-        if (isClockSide)
-        {
-            currentPlayerTurn = (playersTurns)(((int)currentPlayerTurn + 1) % playersCount);
-        }
-        else
-        {
-            currentPlayerTurn = (playersTurns)(((int)currentPlayerTurn - 1 + playersCount) % playersCount);
-        }
-        whichPlayerOnList = (int)currentPlayerTurn;
     }
 }

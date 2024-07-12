@@ -2,6 +2,7 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static Cards;
@@ -12,21 +13,31 @@ public class AiController : MonoBehaviour, ISetStates
     [SerializeField] List<GameObject> Temp = new List<GameObject>();
     [SerializeField] GameData gameDataSo;
     public int myId;
+    [SerializeField] GameData.AiTypes aiType;
+    TextMeshProUGUI myHolyWords;
 
+    private void Awake()
+    {
+        myHolyWords = this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+    }
     public void SetMyskin()
     {
         Image myImageComponent = this.GetComponent<Image>();
-        myImageComponent.sprite = gameDataSo.PlayersSprite();
+        (Sprite sprite, int index) = gameDataSo.PlayersSprite();
+        myImageComponent.sprite = sprite;
         myImageComponent.SetNativeSize();
+        aiType = gameDataSo.GetAiType(index);
     }
 
     public void playTurn()
     {
         Temp.Clear();
+        chooseWord();
         FindPlayableCards();
 
         if (Temp.Count > 0)
         {
+            CheckMyUno();
             SelectCard();
         }
         else
@@ -35,11 +46,23 @@ public class AiController : MonoBehaviour, ISetStates
         }
     }
 
+    void chooseWord()
+    {
+        List<string> dialogues = gameDataSo.GetDialogues(aiType);
+        if (dialogues.Count > 0)
+        {
+            myHolyWords.text = dialogues[UnityEngine.Random.Range(0, dialogues.Count)];
+        }
+        else
+        {
+            myHolyWords.text = "No dialogues available.";
+        }
+    }
+
     public void chooseColor()
     {
         CardColor randomColor = GetRandomCardColor();
         MidPlace.MidPlaceInstance.UpdateCurrentColor(randomColor);
-        Debug.Log("renk seçebildim");
     }
     public CardColor GetRandomCardColor()
     {
@@ -92,7 +115,9 @@ public class AiController : MonoBehaviour, ISetStates
     IEnumerator cardAnim(GameObject chosenCard)
     {
         chosenCard.transform.DOMove(MidPlace.MidPlaceInstance.transform.position, 1f);
-        yield return new WaitForSeconds(1.5f);
+        this.transform.GetChild(0).gameObject.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        this.transform.GetChild(0).gameObject.SetActive(false);
         MidPlace.MidPlaceInstance.pullCard(chosenCard);
         myCards.Remove(chosenCard);
     }
@@ -111,6 +136,18 @@ public class AiController : MonoBehaviour, ISetStates
         else
         {
             GameManager.GameManagerInstance.ChangeTurn();
+        }
+    }
+
+    public bool CheckMyUno()
+    {
+        if (myCards.Count == 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

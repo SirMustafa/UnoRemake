@@ -71,4 +71,9 @@ public class PlayerController : MonoBehaviour, IDropHandler, ISetStates
     {
         ColorPanel.SetActive(true);
     }
+
+    public void CheckMyUno()
+    {
+        
+    }
 }

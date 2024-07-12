@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static Cards;
+using static UnityEngine.Rendering.GPUSort;
 
 public class MidPlace : MonoBehaviour, IDropHandler
 {
@@ -31,6 +32,12 @@ public class MidPlace : MonoBehaviour, IDropHandler
         SetCardInfo(cardComponent);   
         ExecuteCardAction(cardComponent);
         deletepreviouscard();
+    }
+    public void Beginning(GameObject card)
+    {
+        Cards cardComponent = card.GetComponent<Cards>();
+        AddCardToMidPlace(card);
+        SetCardInfo(cardComponent);
     }
 
     void deletepreviouscard()
@@ -123,8 +130,7 @@ public class MidPlace : MonoBehaviour, IDropHandler
     public bool CanPlayCard(Cards card)
     {
 
-        if (currentType == Cards.CardType.Wild || currentType == Cards.CardType.WildDrawFour ||
-        card.MyCardType == Cards.CardType.Wild || card.MyCardType == Cards.CardType.WildDrawFour)
+        if (card.MyCardType == Cards.CardType.Wild || card.MyCardType == Cards.CardType.WildDrawFour)
         {
             return true;
         }
@@ -134,7 +140,8 @@ public class MidPlace : MonoBehaviour, IDropHandler
             return card.MyColor == currentColor || card.MyNumber == currentNumber;
         }
 
-        if (currentType == Cards.CardType.Skip || currentType == Cards.CardType.Reverse || currentType == Cards.CardType.DrawTwo)
+        if (currentType == Cards.CardType.Skip || currentType == Cards.CardType.Reverse || currentType == Cards.CardType.DrawTwo ||
+            currentType == Cards.CardType.Wild || currentType == Cards.CardType.WildDrawFour)
         {
             return card.MyColor == currentColor;
         }

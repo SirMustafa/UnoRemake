@@ -7,4 +7,5 @@ public interface ISetStates
     void playTurn();
     void pullCard();
     void chooseColor();
+    //void CheckMyUno();
 }

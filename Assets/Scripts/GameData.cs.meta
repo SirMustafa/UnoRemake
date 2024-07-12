@@ -3,7 +3,20 @@ guid: 5906f4910894e04488abbc07095f8f84
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - redNumber: {fileID: 21300000, guid: d64c26ed4d4b09141b2c420911abd56f, type: 3}
+  - greenNumber: {fileID: 21300000, guid: d24ce9ca4b3a6584395b48ac4004df32, type: 3}
+  - blueNumber: {instanceID: 0}
+  - yellowNumber: {instanceID: 0}
+  - skip: {instanceID: 0}
+  - reverse: {instanceID: 0}
+  - drawTwo: {instanceID: 0}
+  - wild: {instanceID: 0}
+  - wildDrawFour: {instanceID: 0}
+  - skipHandUnenable: {instanceID: 0}
+  - skipHandEnable: {instanceID: 0}
+  - PullCardUnenable: {instanceID: 0}
+  - PullCardEnable: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
