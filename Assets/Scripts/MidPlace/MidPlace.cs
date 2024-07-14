@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static Cards;
-using static UnityEngine.Rendering.GPUSort;
 
 public class MidPlace : MonoBehaviour, IDropHandler
 {
@@ -125,6 +124,11 @@ public class MidPlace : MonoBehaviour, IDropHandler
         {
             droppedCard.GetComponent<Cards>().TurnBacktoPlayer();
         }
+    }
+
+    public void EndGame()
+    {
+        this.gameObject.SetActive(false);
     }
 
     public bool CanPlayCard(Cards card)

@@ -15,14 +15,15 @@ public class AiController : MonoBehaviour, ISetStates
     public int myId;
     [SerializeField] GameData.AiTypes aiType;
     TextMeshProUGUI myHolyWords;
+    Image myImageComponent;
 
     private void Awake()
     {
         myHolyWords = this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+        myImageComponent = this.GetComponent<Image>();
     }
     public void SetMyskin()
     {
-        Image myImageComponent = this.GetComponent<Image>();
         (Sprite sprite, int index) = gameDataSo.PlayersSprite();
         myImageComponent.sprite = sprite;
         myImageComponent.SetNativeSize();
@@ -118,8 +119,16 @@ public class AiController : MonoBehaviour, ISetStates
         this.transform.GetChild(0).gameObject.SetActive(true);
         yield return new WaitForSeconds(2.5f);
         this.transform.GetChild(0).gameObject.SetActive(false);
-        MidPlace.MidPlaceInstance.pullCard(chosenCard);
-        myCards.Remove(chosenCard);
+
+        if (CheckMyUno())
+        {
+            GameManager.GameManagerInstance.EndGame(myImageComponent.sprite, aiType.ToString());
+        }
+        else
+        {
+            MidPlace.MidPlaceInstance.pullCard(chosenCard);
+            myCards.Remove(chosenCard);
+        } 
     }
 
     private IEnumerator DrawAndCheckCard()
@@ -135,13 +144,25 @@ public class AiController : MonoBehaviour, ISetStates
         }
         else
         {
-            GameManager.GameManagerInstance.ChangeTurn();
+            if (CheckMyUno())
+            {
+                GameManager.GameManagerInstance.EndGame(myImageComponent.sprite,aiType.ToString());
+            }
+            else
+            {
+                GameManager.GameManagerInstance.ChangeTurn();
+            }  
         }
+    }
+
+    public void EndGame()
+    {
+        this.gameObject.SetActive(false);
     }
 
     public bool CheckMyUno()
     {
-        if (myCards.Count == 1)
+        if (Temp.Count == 1 && myCards.Count == 1)
         {
             return true;
         }

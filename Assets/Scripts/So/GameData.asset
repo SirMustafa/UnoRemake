@@ -26,6 +26,13 @@ MonoBehaviour:
   skipHandEnable: {fileID: 7914745318422256654, guid: 6a46e42920cdc0f46a131b6fe9dea541, type: 3}
   PullCardUnenable: {fileID: -3729062527227505180, guid: 8ca932b67581d4f49b7904082d1977c6, type: 3}
   PullCardEnable: {fileID: -6226224038422072502, guid: c5efbc1a3a519c746a8fdb06a5c71daa, type: 3}
+  AiTypess: 0
+  npcDialogueDataList: []
+  Musics:
+  - {fileID: 8300000, guid: 8880751550a67254ba1faf6f1b26566f, type: 3}
+  - {fileID: 8300000, guid: d3f69c24478da004da3e0274922d395a, type: 3}
+  - {fileID: 8300000, guid: 9d09e1b9ec46f574f97d4f5d77ee4a82, type: 3}
+  - {fileID: 8300000, guid: 403090639a5413d44a06a88a19bcf59e, type: 3}
   Sprites:
   - {fileID: 8882303007990571554, guid: 85436b2d746e0714fb4e1a7a6aff6c65, type: 3}
   - {fileID: 3408717571145459868, guid: f2d7cb92bb34b544d843bad16dd69687, type: 3}

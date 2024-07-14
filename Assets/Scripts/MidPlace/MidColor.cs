@@ -37,7 +37,10 @@ public class MidColor : MonoBehaviour
             return Color.white;
         }
     }
-
+    public void EndGame()
+    {
+        this.gameObject.SetActive(false);
+    }
     public void ChangeMyColor(Cards.CardColor newColor)
     {
         myImage.color = colorDictionary[newColor];

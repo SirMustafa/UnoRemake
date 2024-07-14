@@ -97,7 +97,10 @@ public class CardPool : MonoBehaviour
         ReduceCards(randomCard);
         return randomCard;
     }
-
+    public void EndGame()
+    {
+        this.gameObject.SetActive(false);
+    }
     public void MoveMe()
     {
         this.GetComponent<RectTransform>().DOMoveX(-1f, 0.5f);

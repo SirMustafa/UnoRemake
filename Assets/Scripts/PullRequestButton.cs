@@ -43,6 +43,10 @@ public class PullRequestButton : MonoBehaviour
         amIEnable = false;
         myImage.sprite = gameData.PullCardUnenable;
     }
+    public void EndGame()
+    {
+        this.gameObject.SetActive(false);
+    }
     IEnumerator PullRequestCoroutine()
     {
         pullCardAnim.gameObject.SetActive(true);

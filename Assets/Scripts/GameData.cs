@@ -23,6 +23,8 @@ public class GameData : ScriptableObject
     public Sprite skipHandEnable;
     public Sprite PullCardUnenable;
     public Sprite PullCardEnable;
+    public Sprite WinnerImage;
+    public string WinnerName;
     public enum AiTypes
     {
         Asian,
@@ -41,6 +43,7 @@ public class GameData : ScriptableObject
     }
     public AiTypes AiTypess;
     public List<NpcDialogueData> npcDialogueDataList;
+    public List<AudioClip> Musics;
     [SerializeField] List<Sprite> Sprites = new List<Sprite>();
     private AiTypes[] aiTypesArray;
 

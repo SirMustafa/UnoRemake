@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,12 +11,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject aiPlayersPrefab;
     [SerializeField] GameObject cardPullAnim;
     [SerializeField] GameObject ChangeColorPanel;
+    [SerializeField] GameObject EndPanel;
     [SerializeField] PullRequestButton PullButton;
     [SerializeField] SkipRequestButton SkipButton;
     [SerializeField] GameData gameDataSo;
     [SerializeField] Transform gameCanvas;
     [SerializeField] RectTransform[] aiPlayersPositions = new RectTransform[3];
     [SerializeField] List<GameObject> AllPlayers = new List<GameObject>();
+    [SerializeField] GameEvent FinishEvent;
     public static GameManager GameManagerInstance;
     bool isClockSide = true;
     int whichPlayerOnList;
@@ -89,26 +92,27 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator DrawCard(int amount)
     {
-        int j;
-        if(isClockSide)
+        int targetPlayerIndex;
+        if (isClockSide)
         {
-            j = 1;
+            targetPlayerIndex = (whichPlayerOnList + 1) % playersCount;
         }
         else
         {
-            j = -1;
+            targetPlayerIndex = (whichPlayerOnList - 1 + playersCount) % playersCount;
         }
 
         for (int i = 0; i < amount; i++)
         {
-            yield return StartCoroutine(giveCardAnim(whichPlayerOnList + j));
-            AllPlayers[whichPlayerOnList + j].GetComponent<ISetStates>().pullCard();
+            yield return StartCoroutine(giveCardAnim(targetPlayerIndex));
+            AllPlayers[targetPlayerIndex].GetComponent<ISetStates>().pullCard();
             yield return new WaitForSeconds(0.2f);
-            if(i == amount - 1)
+
+            if (i == amount - 1)
             {
                 ChangeTurn();
             }
-        } 
+        }
     }
     public void ReverseCard()
     {
@@ -137,6 +141,14 @@ public class GameManager : MonoBehaviour
     public void ChangeColor()
     {
         AllPlayers[(int)currentPlayerTurn].GetComponent<ISetStates>().chooseColor();
+    }
+
+    public void EndGame(Sprite Winner, string WinnsrsName)
+    {
+        gameDataSo.WinnerImage = Winner;
+        gameDataSo.WinnerName = WinnsrsName;
+        FinishEvent.Raise();
+        EndPanel.SetActive(true);
     }
 
     public void ChangeTurn()

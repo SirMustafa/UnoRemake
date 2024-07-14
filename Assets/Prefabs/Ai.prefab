@@ -235,6 +235,7 @@ GameObject:
   - component: {fileID: 700381682851799409}
   - component: {fileID: 5889949078380395753}
   - component: {fileID: 2483579658712625205}
+  - component: {fileID: -3377181004097388952}
   m_Layer: 0
   m_Name: Ai
   m_TagString: Untagged
@@ -308,6 +309,7 @@ MonoBehaviour:
   Temp: []
   gameDataSo: {fileID: 11400000, guid: 3643f92a6b2378b4b80180ca6e20c524, type: 2}
   myId: 0
+  aiType: 0
 --- !u!222 &2483579658712625205
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -316,3 +318,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6817892816954819872}
   m_CullTransparentMesh: 1
+--- !u!114 &-3377181004097388952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6817892816954819872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40fd86e6705aaea4a8c28547301cbad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  event: {fileID: 11400000, guid: d432c2588c41d6345ab3da9b2364536f, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5889949078380395753}
+        m_TargetAssemblyTypeName: AiController, Assembly-CSharp
+        m_MethodName: EndGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -35,6 +35,10 @@ public class SkipRequestButton : MonoBehaviour
         amIEnable = false;
         myImage.sprite = gameData.skipHandUnenable;
     }
+    public void EndGame()
+    {
+        this.gameObject.SetActive(false);
+    }
     IEnumerator SkipHandle()
     {
         GameManager.GameManagerInstance.ChangeTurn();
