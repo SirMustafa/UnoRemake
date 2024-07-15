@@ -9,6 +9,6 @@ public class SetPlayerCount : MonoBehaviour
     public void SetPlayersCount(int playercount)
     {
         gameDataSo.PlayerCount = playercount;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 }

@@ -13,7 +13,7 @@ public class AiController : MonoBehaviour, ISetStates
     [SerializeField] List<GameObject> Temp = new List<GameObject>();
     [SerializeField] GameData gameDataSo;
     public int myId;
-    [SerializeField] GameData.AiTypes aiType;
+    [SerializeField] GameData.PlayerTypes aiType;
     TextMeshProUGUI myHolyWords;
     Image myImageComponent;
 

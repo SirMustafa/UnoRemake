@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour, IDropHandler, ISetStates
     public static PlayerController PlayerControllerinstance;
     [SerializeField] List<GameObject> myCards = new List<GameObject>();
     [SerializeField] GameObject ColorPanel;
+    [SerializeField] Sprite myImage;
 
     private void Awake()
     {
@@ -34,17 +35,7 @@ public class PlayerController : MonoBehaviour, IDropHandler, ISetStates
         rectTransform.localScale = Vector2.one;
         card.GetComponent<Image>().SetNativeSize();
     }
-    void arrangeCards()
-    {
-        // düzenlencek
-        for (int i = 0; i < myCards.Count; i++)
-        {
-            float distanceFromOrigin = Vector3.Distance(myCards[i].transform.position, Vector3.zero);
-            float newY = distanceFromOrigin + (i * 1f);
-            Vector3 newPosition = new Vector3(myCards[i].transform.position.x, newY, myCards[i].transform.position.z);
-            myCards[i].transform.position = newPosition;
-        }
-    }
+
     public void OnDrop(PointerEventData eventData)
     {
         eventData.pointerDrag.transform.SetParent(this.transform, false);
@@ -71,7 +62,25 @@ public class PlayerController : MonoBehaviour, IDropHandler, ISetStates
     {
         ColorPanel.SetActive(true);
     }
-
+    public void removecardfromMycards(GameObject card)
+    {
+        myCards.Remove(card);
+        if(myCards.Count == 0)
+        {
+            GameManager.GameManagerInstance.EndGame(myImage, "You");
+        }
+    }
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            GameManager.GameManagerInstance.EndGame(myImage, "You");
+        }
+    }
+    public void EndGame()
+    {
+        this.gameObject.SetActive(false);
+    }
     public void CheckMyUno()
     {
         

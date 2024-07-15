@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject cardPullAnim;
     [SerializeField] GameObject ChangeColorPanel;
     [SerializeField] GameObject EndPanel;
+    [SerializeField] PauseButton PauseButton;
     [SerializeField] PullRequestButton PullButton;
     [SerializeField] SkipRequestButton SkipButton;
     [SerializeField] GameData gameDataSo;
@@ -19,9 +20,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] RectTransform[] aiPlayersPositions = new RectTransform[3];
     [SerializeField] List<GameObject> AllPlayers = new List<GameObject>();
     [SerializeField] GameEvent FinishEvent;
+    Sounds sounds;
     public static GameManager GameManagerInstance;
     bool isClockSide = true;
-    int whichPlayerOnList;
+    public int whichPlayerOnList;
 
     enum playersTurns
     {
@@ -35,6 +37,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         GameManagerInstance = this;
+        sounds = FindFirstObjectByType<Sounds>();
     }
 
     private void Start()
@@ -80,11 +83,13 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         PullButton.Enable();
         SkipButton.Enable();
+        PauseButton.Enable();
     }
     public IEnumerator giveCardAnim(int whichPlayer)
     {
         cardPullAnim.SetActive(true);
         cardPullAnim.transform.DOMove(AllPlayers[whichPlayer].transform.position, 0.3f);
+        sounds.PlaySoundEffect(GameData.SoundEffects.CardDraw);
         yield return new WaitForSeconds(0.4f);
         cardPullAnim.SetActive(false);
         cardPullAnim.transform.position = Vector2.zero;
@@ -138,6 +143,7 @@ public class GameManager : MonoBehaviour
         }
         ChangeTurn();
     }
+    
     public void ChangeColor()
     {
         AllPlayers[(int)currentPlayerTurn].GetComponent<ISetStates>().chooseColor();
@@ -145,7 +151,16 @@ public class GameManager : MonoBehaviour
 
     public void EndGame(Sprite Winner, string WinnsrsName)
     {
-        gameDataSo.WinnerImage = Winner;
+        if(WinnsrsName == "You")
+        {
+            gameDataSo.WinnerImage = gameDataSo.WinnerPlayerImage();
+            Sounds.Soundsinstance.FinishPanel();
+        }
+        else
+        {
+            gameDataSo.WinnerImage = Winner;
+        }
+        
         gameDataSo.WinnerName = WinnsrsName;
         FinishEvent.Raise();
         EndPanel.SetActive(true);

@@ -118,7 +118,6 @@ public abstract class Cards : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     public void OnPointerEnter(PointerEventData eventData)
     {
         transform.DOScale(1.07f, .15f).SetEase(Ease.OutBack);
-
         DOTween.Kill(2, true);
         this.transform.DOPunchRotation(Vector3.forward * 5, 0.15f, 20, 1).SetId(2);
     }

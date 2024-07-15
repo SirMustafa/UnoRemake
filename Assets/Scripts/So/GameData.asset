@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5906f4910894e04488abbc07095f8f84, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  PlayerCount: 3
+  PlayerCount: 4
   redNumber: {fileID: 21300000, guid: d64c26ed4d4b09141b2c420911abd56f, type: 3}
   greenNumber: {fileID: 21300000, guid: d24ce9ca4b3a6584395b48ac4004df32, type: 3}
   blueNumber: {fileID: 21300000, guid: 05002c9b30aeb0e4198b8be37412d023, type: 3}
@@ -24,8 +24,14 @@ MonoBehaviour:
   wildDrawFour: {fileID: 21300000, guid: 9ac1a1fdfb2a90a4098f911cb4a8d830, type: 3}
   skipHandUnenable: {fileID: -9042089049681987918, guid: 91e6bab27f006104a8506416c4a75ff0, type: 3}
   skipHandEnable: {fileID: 7914745318422256654, guid: 6a46e42920cdc0f46a131b6fe9dea541, type: 3}
+  pauseEnable: {fileID: 21300000, guid: 6895dd9988b9dce4a96f90b0b52b5566, type: 3}
+  pauseUnEnable: {fileID: 21300000, guid: 6e43a1a9a86a1dd47a3898754593470d, type: 3}
   PullCardUnenable: {fileID: -3729062527227505180, guid: 8ca932b67581d4f49b7904082d1977c6, type: 3}
   PullCardEnable: {fileID: -6226224038422072502, guid: c5efbc1a3a519c746a8fdb06a5c71daa, type: 3}
+  WinnerImage: {fileID: -4087377375887406748, guid: b3734fd9e76ed074ab72e98c9629001c, type: 3}
+  WinnerName: 
+  tempObj: {fileID: 0}
+  SoundEffectss: 0
   AiTypess: 0
   npcDialogueDataList: []
   Musics:
@@ -33,6 +39,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d3f69c24478da004da3e0274922d395a, type: 3}
   - {fileID: 8300000, guid: 9d09e1b9ec46f574f97d4f5d77ee4a82, type: 3}
   - {fileID: 8300000, guid: 403090639a5413d44a06a88a19bcf59e, type: 3}
+  - {fileID: 8300000, guid: ad81176e57795d3469bec04a86e83b9c, type: 3}
+  - {fileID: 8300000, guid: 2e1827322bf231b439b2cb4fa22b5f97, type: 3}
+  - {fileID: 8300000, guid: 9bd8c5c7b3458b24dbaec601a0d66d14, type: 3}
+  Effects:
+  - {fileID: 8300000, guid: 7234d138f65ca3342af1ea44fee7235f, type: 3}
   Sprites:
   - {fileID: 8882303007990571554, guid: 85436b2d746e0714fb4e1a7a6aff6c65, type: 3}
   - {fileID: 3408717571145459868, guid: f2d7cb92bb34b544d843bad16dd69687, type: 3}
@@ -47,3 +58,12 @@ MonoBehaviour:
   - {fileID: 9014905429810406996, guid: 68e3c594fbd4f2844b7802ea689c2b60, type: 3}
   - {fileID: 2759625832949664974, guid: 51a0f44c07c9b2a4fbdcd6a69e347283, type: 3}
   - {fileID: 6047752347147467583, guid: 88448ddb260b26449b57c892dafa17c2, type: 3}
+  PlayerSprites:
+  - {fileID: 7791214535279931073, guid: cad506d71cc81cb4686d9e1f698c6407, type: 3}
+  - {fileID: 8302129328904623997, guid: 5f06d1926e1cd7f41856b878f6d104aa, type: 3}
+  - {fileID: -9189023498879117399, guid: 5a75ad4f0d0155345ab3a1146103c3af, type: 3}
+  - {fileID: 5826410909707381162, guid: 75c03c6293ba9fe43883288ce0f196d2, type: 3}
+  - {fileID: 5120940934649208145, guid: ac466df77d9aa284d95a6ec566e6f18b, type: 3}
+  - {fileID: -6379982804546595101, guid: f5d15de6898edf74eb7cdbeed26f4cec, type: 3}
+  - {fileID: -4087377375887406748, guid: b3734fd9e76ed074ab72e98c9629001c, type: 3}
+  - {fileID: -6954615962184996107, guid: eba309b469f23354ca968c83459b8f18, type: 3}

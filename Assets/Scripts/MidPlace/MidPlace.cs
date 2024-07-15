@@ -12,6 +12,7 @@ public class MidPlace : MonoBehaviour, IDropHandler
     [SerializeField] private List<GameObject> myCards = new List<GameObject>();
     private Image myImageComponent;
     private RectTransform myRectTransform;
+    [SerializeField] GameData gameDataSo;
 
     private Cards.CardColor currentColor;
     private int currentNumber;
@@ -45,6 +46,7 @@ public class MidPlace : MonoBehaviour, IDropHandler
         {
             myCards[^2].gameObject.SetActive(false);
         }
+        PlayerController.PlayerControllerinstance.removecardfromMycards(gameDataSo.tempObj);
     }
     private void ExecuteCardAction(Cards card)
     {
@@ -118,6 +120,7 @@ public class MidPlace : MonoBehaviour, IDropHandler
         GameObject droppedCard = eventData.pointerDrag;
         if (droppedCard != null && CanPlayCard(droppedCard.GetComponent<Cards>()))
         { 
+            gameDataSo.tempObj = droppedCard;
             pullCard(droppedCard);
         }
         else
