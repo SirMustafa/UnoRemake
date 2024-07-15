@@ -52,6 +52,10 @@ public class Sounds : MonoBehaviour
         AudioClip clip = gameDataSo.Effects[(int)effect];
         SfxSource.PlayOneShot(clip);
     }
+    public void SetVolume(float amount)
+    {
+        MusicSource.DOFade(amount,1f);
+    }
 
     IEnumerator PlayMusicWithFade(AudioClip clip)
     {

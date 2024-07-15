@@ -49,12 +49,8 @@ public class PullRequestButton : MonoBehaviour
     }
     IEnumerator PullRequestCoroutine()
     {
-        pullCardAnim.gameObject.SetActive(true);
-        pullCardAnim.DOMove(player.transform.position, 0.3f);
-        yield return new WaitForSeconds(0.4f);
+        yield return StartCoroutine(GameManager.GameManagerInstance.giveCardAnim(0));
         player.GetComponent<ISetStates>().pullCard();
-        pullCardAnim.gameObject.SetActive(false);
-        pullCardAnim.position = Vector2.zero;
         Disable();
     }
 }

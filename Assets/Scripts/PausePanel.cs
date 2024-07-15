@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PausePanel : MonoBehaviour
 {
@@ -11,14 +12,20 @@ public class PausePanel : MonoBehaviour
     }
     public void ResumeGame()
     {
-
+        this.gameObject.SetActive(false);
     }
     public void RestartGame()
     {
-
+        SceneManager.LoadScene(2);
+        this.gameObject.SetActive(false);
     }
     public void ExitGame()
     {
-        
+        SceneManager.LoadScene(1);
+        this.gameObject.SetActive(false);
+    }
+    private void OnDisable()
+    {
+        Time.timeScale = 1f;
     }
 }

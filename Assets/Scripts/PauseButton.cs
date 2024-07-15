@@ -40,11 +40,13 @@ public class PauseButton : MonoBehaviour
             if (pausePanel.activeSelf == true)
             {
                 pausePanel.SetActive(false);
+                Sounds.Soundsinstance.SetVolume(1);
                 Time.timeScale = 1f;
             }
             else
             {
                 pausePanel.SetActive(true);
+                Sounds.Soundsinstance.SetVolume(0.5f);
                 Time.timeScale = 0f;
             }
         }  

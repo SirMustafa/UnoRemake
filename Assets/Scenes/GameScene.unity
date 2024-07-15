@@ -2559,7 +2559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTesting: 0
-  playersCount: 0
+  playersCount: 3
   aiPlayersPrefab: {fileID: 6817892816954819872, guid: 8dbb07991c38b064bad892762228029c, type: 3}
   cardPullAnim: {fileID: 1176340703}
   ChangeColorPanel: {fileID: 916387864}
