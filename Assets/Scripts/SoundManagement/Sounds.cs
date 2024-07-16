@@ -11,13 +11,24 @@ public class Sounds : MonoBehaviour
     [SerializeField] AudioSource SfxSource;
     public static Sounds Soundsinstance;
     private AudioClip chosenMusic;
+    public float MusicVolume { get; private set; }
+    public float SfxVolume { get; private set; }
+
 
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
-        Soundsinstance = this;
-        SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.LoadScene(1);
+        if (Soundsinstance == null)
+        {
+            Soundsinstance = this;
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+        MusicVolume = MusicSource.volume;
+        SfxVolume = SfxSource.volume;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -37,7 +48,7 @@ public class Sounds : MonoBehaviour
     private void PlayRandomMusic()
     {
         StopAllCoroutines();
-        chosenMusic = gameDataSo.Musics[Random.Range(0, gameDataSo.Musics.Count)];
+        chosenMusic = gameDataSo.Musics[Random.Range(0, gameDataSo.Musics.Count-1)];
         StartCoroutine(PlayMusicWithFade(chosenMusic));
     }
 
@@ -52,9 +63,15 @@ public class Sounds : MonoBehaviour
         AudioClip clip = gameDataSo.Effects[(int)effect];
         SfxSource.PlayOneShot(clip);
     }
-    public void SetVolume(float amount)
+    public void SetMusicVolume(float amount)
     {
+        MusicVolume = amount;
         MusicSource.DOFade(amount,1f);
+    }
+    public void SetSfxVolume(float amount)
+    {
+        SfxVolume = amount;
+        SfxSource.DOFade(amount, 1f);
     }
 
     IEnumerator PlayMusicWithFade(AudioClip clip)

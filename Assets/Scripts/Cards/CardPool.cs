@@ -109,4 +109,8 @@ public class CardPool : MonoBehaviour
     {
         allCards.Remove(card);
     }
+    public void AddCards(GameObject card)
+    {
+        allCards.Remove(card);
+    }
 }

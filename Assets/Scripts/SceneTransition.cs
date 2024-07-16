@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,16 +9,22 @@ public class SceneTransition : MonoBehaviour
     Animator animator;
 
     private void Awake()
-    {
+    {      
         if (SceneInstance == null)
         {
             SceneInstance = this;
+            animator = GetComponent<Animator>();
+            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
             Destroy(this.gameObject);
         }
-        animator = GetComponent<Animator>();
+        NextLvl(1);
+    }
+    public void NextLvl(int scene)
+    {
+        StartCoroutine(Loadlvl(scene));
     }
     public IEnumerator Loadlvl(int scene)
     {

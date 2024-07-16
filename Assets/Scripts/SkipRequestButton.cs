@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SkipRequestButton : MonoBehaviour
+public class SkipRequestButton : MonoBehaviour, IPointerEnterHandler
 {
     [SerializeField] GameData gameData;
     Image myImage;
@@ -44,5 +45,11 @@ public class SkipRequestButton : MonoBehaviour
         GameManager.GameManagerInstance.ChangeTurn();
         yield return new WaitForSeconds(1);
         Disable();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (!amIEnable) return;
+        Sounds.Soundsinstance.PlaySoundEffect(GameData.SoundEffects.ButtonHover);
     }
 }

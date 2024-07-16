@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PauseButton : MonoBehaviour
+public class PauseButton : MonoBehaviour, IPointerEnterHandler
 {
     [SerializeField] GameObject pausePanel;
     [SerializeField] GameData gameData;
@@ -40,15 +41,21 @@ public class PauseButton : MonoBehaviour
             if (pausePanel.activeSelf == true)
             {
                 pausePanel.SetActive(false);
-                Sounds.Soundsinstance.SetVolume(1);
+                Sounds.Soundsinstance.SetMusicVolume(1);
                 Time.timeScale = 1f;
             }
             else
             {
                 pausePanel.SetActive(true);
-                Sounds.Soundsinstance.SetVolume(0.5f);
+                Sounds.Soundsinstance.SetMusicVolume(0.5f);
                 Time.timeScale = 0f;
             }
         }  
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (!amIEnable) return;
+        Sounds.Soundsinstance.PlaySoundEffect(GameData.SoundEffects.ButtonHover);
     }
 }

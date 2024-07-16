@@ -276,7 +276,7 @@ GameObject:
   m_Component:
   - component: {fileID: 248822076}
   m_Layer: 5
-  m_Name: BackGrounds
+  m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -451,6 +451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pullCardAnim: {fileID: 1176340705}
   gameData: {fileID: 11400000, guid: 3643f92a6b2378b4b80180ca6e20c524, type: 2}
+  skipRequestButton: {fileID: 1046223328}
 --- !u!114 &316473574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,7 +512,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 700, y: 0}
+  m_AnchoredPosition: {x: 650, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &506013033
@@ -2559,7 +2560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTesting: 0
-  playersCount: 3
+  playersCount: 0
   aiPlayersPrefab: {fileID: 6817892816954819872, guid: 8dbb07991c38b064bad892762228029c, type: 3}
   cardPullAnim: {fileID: 1176340703}
   ChangeColorPanel: {fileID: 916387864}
@@ -2590,6 +2591,7 @@ GameObject:
   - component: {fileID: 1759308366}
   - component: {fileID: 1759308365}
   - component: {fileID: 1759308368}
+  - component: {fileID: 1759308369}
   m_Layer: 5
   m_Name: Pause_Btn
   m_TagString: Untagged
@@ -2724,6 +2726,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 793465010}
   gameData: {fileID: 11400000, guid: 3643f92a6b2378b4b80180ca6e20c524, type: 2}
+--- !u!114 &1759308369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759308363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40fd86e6705aaea4a8c28547301cbad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  event: {fileID: 11400000, guid: d432c2588c41d6345ab3da9b2364536f, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1759308368}
+        m_TargetAssemblyTypeName: PauseButton, Assembly-CSharp
+        m_MethodName: EndGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1814799302
 GameObject:
   m_ObjectHideFlags: 0
@@ -2945,7 +2975,7 @@ GameObject:
   - component: {fileID: 1974696474}
   - component: {fileID: 1974696475}
   m_Layer: 5
-  m_Name: Color
+  m_Name: ColorDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

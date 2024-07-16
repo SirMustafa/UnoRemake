@@ -109,6 +109,10 @@ public class MidPlace : MonoBehaviour, IDropHandler
 
     private void SetupImage()
     {
+        if(myCards.Count > 2)
+        {
+            CardPool.CardPoolInstance.AddCards(myCards[^2].gameObject);
+        }
         Image cardsImage = myCards[^1].GetComponent<Image>();
         cardsImage.raycastTarget = false;
         myImageComponent.sprite = cardsImage.sprite;

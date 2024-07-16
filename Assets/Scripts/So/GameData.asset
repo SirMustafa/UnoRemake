@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5906f4910894e04488abbc07095f8f84, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  PlayerCount: 4
+  PlayerCount: 3
   redNumber: {fileID: 21300000, guid: d64c26ed4d4b09141b2c420911abd56f, type: 3}
   greenNumber: {fileID: 21300000, guid: d24ce9ca4b3a6584395b48ac4004df32, type: 3}
   blueNumber: {fileID: 21300000, guid: 05002c9b30aeb0e4198b8be37412d023, type: 3}
@@ -44,6 +44,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9bd8c5c7b3458b24dbaec601a0d66d14, type: 3}
   Effects:
   - {fileID: 8300000, guid: 7234d138f65ca3342af1ea44fee7235f, type: 3}
+  - {fileID: 8300000, guid: 797ca549f19082f45a3d0350215fc356, type: 3}
+  - {fileID: 8300000, guid: 58beca5c57cd82b4ca5bff3da6be0f2c, type: 3}
   Sprites:
   - {fileID: 8882303007990571554, guid: 85436b2d746e0714fb4e1a7a6aff6c65, type: 3}
   - {fileID: 3408717571145459868, guid: f2d7cb92bb34b544d843bad16dd69687, type: 3}

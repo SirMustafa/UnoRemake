@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
         {
             playersCount = gameDataSo.PlayerCount;
         }
+        SceneTransition.SceneInstance.gameObject.SetActive(false);
         CardPool.CardPoolInstance.CreateAllCards();
         SpawnAis(playersCount);
         StartCoroutine(GiveCardsAtBeginning(playersCount));
@@ -82,7 +83,6 @@ public class GameManager : MonoBehaviour
         MidPlace.MidPlaceInstance.Beginning(CardPool.CardPoolInstance.RandomCard());
         yield return new WaitForSeconds(0.5f);
         PullButton.Enable();
-        SkipButton.Enable();
         PauseButton.Enable();
     }
     public IEnumerator giveCardAnim(int whichPlayer)
@@ -163,6 +163,7 @@ public class GameManager : MonoBehaviour
         
         gameDataSo.WinnerName = WinnsrsName;
         FinishEvent.Raise();
+        SceneTransition.SceneInstance.gameObject.SetActive(true);
         EndPanel.SetActive(true);
     }
 
@@ -188,7 +189,6 @@ public class GameManager : MonoBehaviour
         else
         {
             PullButton.Enable();
-            SkipButton.Enable();
         }
 
         AllPlayers[(int)currentPlayerTurn].GetComponent<ISetStates>().playTurn();

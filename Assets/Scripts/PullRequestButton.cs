@@ -2,12 +2,14 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PullRequestButton : MonoBehaviour
+public class PullRequestButton : MonoBehaviour, IPointerEnterHandler
 {
     [SerializeField] Transform pullCardAnim;
     [SerializeField] GameData gameData;
+    [SerializeField] SkipRequestButton skipRequestButton;
     Transform player;
     Image myImage;
     Button button;  
@@ -51,6 +53,13 @@ public class PullRequestButton : MonoBehaviour
     {
         yield return StartCoroutine(GameManager.GameManagerInstance.giveCardAnim(0));
         player.GetComponent<ISetStates>().pullCard();
+        skipRequestButton.Enable();
         Disable();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (!amIEnable) return;
+        Sounds.Soundsinstance.PlaySoundEffect(GameData.SoundEffects.ButtonHover);
     }
 }

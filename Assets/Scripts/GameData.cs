@@ -52,8 +52,8 @@ public class GameData : ScriptableObject
     public enum SoundEffects
     {
         CardDraw,
-        WinSound,
-        LoseSound
+        ButtonHover,
+        CardSelect,
         // Add more sound effects here
     }
     public SoundEffects SoundEffectss;

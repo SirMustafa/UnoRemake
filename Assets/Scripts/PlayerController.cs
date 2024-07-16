@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour, IDropHandler, ISetStates
 
     public void OnDrop(PointerEventData eventData)
     {
+        if (eventData.pointerDrag.GetComponent<Cards>().isInteractable == false) return;
         eventData.pointerDrag.transform.SetParent(this.transform, false);
     }
 
@@ -65,7 +66,7 @@ public class PlayerController : MonoBehaviour, IDropHandler, ISetStates
     public void removecardfromMycards(GameObject card)
     {
         myCards.Remove(card);
-        if(myCards.Count == 0)
+        if (myCards.Count == 0)
         {
             GameManager.GameManagerInstance.EndGame(myImage, "You");
         }
@@ -83,6 +84,6 @@ public class PlayerController : MonoBehaviour, IDropHandler, ISetStates
     }
     public void CheckMyUno()
     {
-        
+
     }
 }

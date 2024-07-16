@@ -25,7 +25,7 @@ public class FinishPanel : MonoBehaviour
 
         if(gameDataSo.WinnerName == "You")
         {
-            StartCoroutine(turntoMainMenu(10));
+            StartCoroutine(turntoMainMenu(8));
         }
         else
         {

@@ -117,6 +117,8 @@ public abstract class Cards : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (!isInteractable) return;
+        Sounds.Soundsinstance.PlaySoundEffect(GameData.SoundEffects.CardSelect);
         transform.DOScale(1.07f, .15f).SetEase(Ease.OutBack);
         DOTween.Kill(2, true);
         this.transform.DOPunchRotation(Vector3.forward * 5, 0.15f, 20, 1).SetId(2);
@@ -124,6 +126,7 @@ public abstract class Cards : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (!isInteractable) return;
         this.transform.DOScale(1, 0.15f).SetEase(Ease.OutBack);
     }
 }
