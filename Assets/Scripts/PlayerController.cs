@@ -71,13 +71,7 @@ public class PlayerController : MonoBehaviour, IDropHandler, ISetStates
             GameManager.GameManagerInstance.EndGame(myImage, "You");
         }
     }
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            GameManager.GameManagerInstance.EndGame(myImage, "You");
-        }
-    }
+
     public void EndGame()
     {
         this.gameObject.SetActive(false);
