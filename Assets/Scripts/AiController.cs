@@ -9,34 +9,36 @@ using static Cards;
 
 public class AiController : MonoBehaviour, ISetStates
 {
-    [SerializeField] List<GameObject> myCards = new List<GameObject>();
-    [SerializeField] List<GameObject> Temp = new List<GameObject>();
-    [SerializeField] GameData gameDataSo;
-    public int myId;
-    [SerializeField] GameData.PlayerTypes aiType;
-    TextMeshProUGUI myHolyWords;
-    Image myImageComponent;
+    [SerializeField] private List<GameObject> _cards = new List<GameObject>();
+    [SerializeField] private List<GameObject> _tempObjects = new List<GameObject>();
+    [SerializeField] private GameData _gameDataSo;   
+    [SerializeField] private GameData.PlayerTypes _aiType;
+
+    public int Id;
+
+    private TextMeshProUGUI _holyWords;
+    private Image _imageComponent;
 
     private void Awake()
     {
-        myHolyWords = this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
-        myImageComponent = this.GetComponent<Image>();
+        _holyWords = this.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+        _imageComponent = this.GetComponent<Image>();
     }
     public void SetMyskin()
     {
-        (Sprite sprite, int index) = gameDataSo.PlayersSprite();
-        myImageComponent.sprite = sprite;
-        myImageComponent.SetNativeSize();
-        aiType = gameDataSo.GetAiType(index);
+        (Sprite sprite, int index) = _gameDataSo.PlayersSprite();
+        _imageComponent.sprite = sprite;
+        _imageComponent.SetNativeSize();
+        _aiType = _gameDataSo.GetAiType(index);
     }
 
-    public void playTurn()
+    public void PlayTurn()
     {
-        Temp.Clear();
+        _tempObjects.Clear();
         chooseWord();
         FindPlayableCards();
 
-        if (Temp.Count > 0)
+        if (_tempObjects.Count > 0)
         {
             CheckMyUno();
             SelectCard();
@@ -49,18 +51,18 @@ public class AiController : MonoBehaviour, ISetStates
 
     void chooseWord()
     {
-        List<string> dialogues = gameDataSo.GetDialogues(aiType);
+        List<string> dialogues = _gameDataSo.GetDialogues(_aiType);
         if (dialogues.Count > 0)
         {
-            myHolyWords.text = dialogues[UnityEngine.Random.Range(0, dialogues.Count)];
+            _holyWords.text = dialogues[UnityEngine.Random.Range(0, dialogues.Count)];
         }
         else
         {
-            myHolyWords.text = "No dialogues available.";
+            _holyWords.text = "No Dialogues available.";
         }
     }
 
-    public void chooseColor()
+    public void ChooseColor()
     {
         CardColor randomColor = GetRandomCardColor();
         MidPlace.MidPlaceInstance.UpdateCurrentColor(randomColor);
@@ -73,16 +75,16 @@ public class AiController : MonoBehaviour, ISetStates
         return randomColor;
     }
 
-    public void pullCard()
+    public void PullCard()
     {
         pullcardAnim();
         GameObject card = CardPool.CardPoolInstance.RandomCard();
-        myCards.Add(card);
+        _cards.Add(card);
         addCardOnUi(card);
     }
-    void pullcardAnim()
+    private void pullcardAnim()
     {
-        StartCoroutine(GameManager.GameManagerInstance.giveCardAnim(myId));
+        StartCoroutine(GameManager.GameManagerInstance.giveCardAnim(Id));
     }
 
     void addCardOnUi(GameObject card)
@@ -97,23 +99,23 @@ public class AiController : MonoBehaviour, ISetStates
 
     private void FindPlayableCards()
     {
-        foreach (GameObject card in myCards)
+        foreach (GameObject card in _cards)
         {
             if (MidPlace.MidPlaceInstance.CanPlayCard(card.GetComponent<Cards>()))
             {
-                Temp.Add(card);
+                _tempObjects.Add(card);
             }
         }
     }
 
-    void SelectCard()
+    private void SelectCard()
     {
-        GameObject chosenCard = Temp[UnityEngine.Random.Range(0, Temp.Count)];
+        GameObject chosenCard = _tempObjects[UnityEngine.Random.Range(0, _tempObjects.Count)];
         chosenCard.SetActive(true);
         StartCoroutine(cardAnim(chosenCard));
     }
 
-    IEnumerator cardAnim(GameObject chosenCard)
+    private IEnumerator cardAnim(GameObject chosenCard)
     {
         chosenCard.transform.DOMove(MidPlace.MidPlaceInstance.transform.position, 1f);
         this.transform.GetChild(0).gameObject.SetActive(true);
@@ -122,21 +124,21 @@ public class AiController : MonoBehaviour, ISetStates
 
         if (CheckMyUno())
         {
-            GameManager.GameManagerInstance.EndGame(myImageComponent.sprite, aiType.ToString());
+            GameManager.GameManagerInstance.EndGame(_imageComponent.sprite, _aiType.ToString());
         }
         else
         {
-            MidPlace.MidPlaceInstance.pullCard(chosenCard);
-            myCards.Remove(chosenCard);
+            MidPlace.MidPlaceInstance.PullCard(chosenCard);
+            _cards.Remove(chosenCard);
         } 
     }
 
     private IEnumerator DrawAndCheckCard()
     {
-        pullCard();
+        PullCard();
         yield return new WaitForSeconds(1);  // Delay for drawing animation
 
-        GameObject drawnCard = myCards[^1];  // Last added card
+        GameObject drawnCard = _cards[^1];  // Last added card
         if (MidPlace.MidPlaceInstance.CanPlayCard(drawnCard.GetComponent<Cards>()))
         {
             drawnCard.SetActive(true);
@@ -146,7 +148,7 @@ public class AiController : MonoBehaviour, ISetStates
         {
             if (CheckMyUno())
             {
-                GameManager.GameManagerInstance.EndGame(myImageComponent.sprite,aiType.ToString());
+                GameManager.GameManagerInstance.EndGame(_imageComponent.sprite,_aiType.ToString());
             }
             else
             {
@@ -162,7 +164,7 @@ public class AiController : MonoBehaviour, ISetStates
 
     public bool CheckMyUno()
     {
-        if (Temp.Count == 1 && myCards.Count == 1)
+        if (_tempObjects.Count == 1 && _cards.Count == 1)
         {
             return true;
         }

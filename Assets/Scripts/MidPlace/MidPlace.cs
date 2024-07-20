@@ -1,37 +1,35 @@
-using DG.Tweening;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static Cards;
 
 public class MidPlace : MonoBehaviour, IDropHandler
 {
     public static MidPlace MidPlaceInstance;
-    [SerializeField] private List<GameObject> myCards = new List<GameObject>();
-    private Image myImageComponent;
-    private RectTransform myRectTransform;
-    [SerializeField] GameData gameDataSo;
 
-    private Cards.CardColor currentColor;
-    private int currentNumber;
-    private Cards.CardType currentType;
+    [SerializeField] private List<GameObject> _cards = new List<GameObject>();
+    [SerializeField] private GameData _gameDataSo;
+
+    private Image _imageComponent;
+    private RectTransform _rectTransform;
+    private Cards.CardColor _currentColor;
+    private int _currentNumber;
+    private Cards.CardType _currentType;
 
     private void Awake()
     {
         MidPlaceInstance = this;
-        myImageComponent = GetComponent<Image>();
-        myRectTransform = GetComponent<RectTransform>();
+        _imageComponent = GetComponent<Image>();
+        _rectTransform = GetComponent<RectTransform>();
     }
 
-    public void pullCard(GameObject card)
+    public void PullCard(GameObject card)
     {
         Cards cardComponent = card.GetComponent<Cards>();
         AddCardToMidPlace(card);
         SetCardInfo(cardComponent);   
         ExecuteCardAction(cardComponent);
-        deletepreviouscard();
+        DeletePreviousCard();
     }
     public void Beginning(GameObject card)
     {
@@ -40,18 +38,18 @@ public class MidPlace : MonoBehaviour, IDropHandler
         SetCardInfo(cardComponent);
     }
 
-    void deletepreviouscard()
+    private void DeletePreviousCard()
     {
-        if(myCards.Count > 1)
+        if(_cards.Count > 1)
         {
-            myCards[^2].gameObject.SetActive(false);
+            _cards[^2].gameObject.SetActive(false);
         }
-        PlayerController.PlayerControllerinstance.removecardfromMycards(gameDataSo.tempObj);
+        PlayerController.PlayerControllerinstance.removecardfromMycards(_gameDataSo.tempObj);
     }
     private void ExecuteCardAction(Cards card)
     {
         GameManager gameManager = GameManager.GameManagerInstance;
-        switch (card.MyCardType)
+        switch (card.Type)
         {
             case Cards.CardType.Skip:
                 gameManager.SkipCard();
@@ -78,45 +76,45 @@ public class MidPlace : MonoBehaviour, IDropHandler
                 break;
 
             default:
-                Debug.LogError("Unknown card type: " + card.MyCardType);
+                Debug.LogError("Unknown card type: " + card.Type);
                 break;
         }
     }
 
     private void SetCardInfo(Cards card)
     {
-        currentColor = card.MyColor;
-        currentNumber = card.MyNumber;
-        currentType = card.MyCardType;
-        MidColor.MidColorInstance.ChangeMyColor(currentColor);
+        _currentColor = card.Color;
+        _currentNumber = card.Number;
+        _currentType = card.Type;
+        MidColor.MidColorInstance.ChangeMyColor(_currentColor);
     }
 
     private void AddCardToMidPlace(GameObject card)
     {
         RectTransform rectTransform = card.GetComponent<RectTransform>();
         rectTransform.SetParent(this.transform, false);
-        rectTransform.position = myRectTransform.position;
-        myCards.Add(card);
+        rectTransform.position = _rectTransform.position;
+        _cards.Add(card);
         SetupImage();    
     }
 
     public void UpdateCurrentColor(Cards.CardColor newColor)
     {
-        currentColor = newColor;
-        MidColor.MidColorInstance.ChangeMyColor(currentColor);
+        _currentColor = newColor;
+        MidColor.MidColorInstance.ChangeMyColor(_currentColor);
         GameManager.GameManagerInstance.ChangeTurn();
     }
 
     private void SetupImage()
     {
-        if(myCards.Count > 2)
+        if(_cards.Count > 2)
         {
-            CardPool.CardPoolInstance.AddCards(myCards[^2].gameObject);
+            CardPool.CardPoolInstance.AddCards(_cards[^2].gameObject);
         }
-        Image cardsImage = myCards[^1].GetComponent<Image>();
+        Image cardsImage = _cards[^1].GetComponent<Image>();
         cardsImage.raycastTarget = false;
-        myImageComponent.sprite = cardsImage.sprite;
-        myImageComponent.SetNativeSize();
+        _imageComponent.sprite = cardsImage.sprite;
+        _imageComponent.SetNativeSize();
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -124,12 +122,12 @@ public class MidPlace : MonoBehaviour, IDropHandler
         GameObject droppedCard = eventData.pointerDrag;
         if (droppedCard != null && CanPlayCard(droppedCard.GetComponent<Cards>()))
         { 
-            gameDataSo.tempObj = droppedCard;
-            pullCard(droppedCard);
+            _gameDataSo.tempObj = droppedCard;
+            PullCard(droppedCard);
         }
         else
         {
-            droppedCard.GetComponent<Cards>().TurnBacktoPlayer();
+            droppedCard.GetComponent<Cards>().ReturnToPlayer();
         }
     }
 
@@ -141,20 +139,20 @@ public class MidPlace : MonoBehaviour, IDropHandler
     public bool CanPlayCard(Cards card)
     {
 
-        if (card.MyCardType == Cards.CardType.Wild || card.MyCardType == Cards.CardType.WildDrawFour)
+        if (card.Type == Cards.CardType.Wild || card.Type == Cards.CardType.WildDrawFour)
         {
             return true;
         }
 
-        if (currentType == Cards.CardType.Number)
+        if (_currentType == Cards.CardType.Number)
         {
-            return card.MyColor == currentColor || card.MyNumber == currentNumber;
+            return card.Color == _currentColor || card.Number == _currentNumber;
         }
 
-        if (currentType == Cards.CardType.Skip || currentType == Cards.CardType.Reverse || currentType == Cards.CardType.DrawTwo ||
-            currentType == Cards.CardType.Wild || currentType == Cards.CardType.WildDrawFour)
+        if (_currentType == Cards.CardType.Skip || _currentType == Cards.CardType.Reverse || _currentType == Cards.CardType.DrawTwo ||
+            _currentType == Cards.CardType.Wild || _currentType == Cards.CardType.WildDrawFour)
         {
-            return card.MyColor == currentColor;
+            return card.Color == _currentColor;
         }
 
         return false;

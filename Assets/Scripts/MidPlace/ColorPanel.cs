@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ColorPanel : MonoBehaviour
 {
-    [SerializeField] GameObject SkipButton;
-    [SerializeField] GameObject PullButton;
-    [SerializeField] GameObject ColorFrame;
+    [SerializeField] private GameObject SkipButton;
+    [SerializeField] private GameObject PullButton;
+    [SerializeField] private GameObject ColorFrame;
     private void OnEnable()
     {
         SkipButton.SetActive(false);

@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cffdc91f70a9adf41a16da0ffaf31667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentColor: 3
+  CurrentColor: 0
 --- !u!1 &248822075
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,7 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cffdc91f70a9adf41a16da0ffaf31667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentColor: 0
+  CurrentColor: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1077,7 +1077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cffdc91f70a9adf41a16da0ffaf31667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentColor: 2
+  CurrentColor: 0
 --- !u!1 &916387864
 GameObject:
   m_ObjectHideFlags: 0
@@ -1225,8 +1225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61c275d6c80740346a29ba12b62dc95d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myCards: []
-  gameDataSo: {fileID: 11400000, guid: 3643f92a6b2378b4b80180ca6e20c524, type: 2}
+  _cards: []
+  _gameDataSo: {fileID: 11400000, guid: 3643f92a6b2378b4b80180ca6e20c524, type: 2}
 --- !u!114 &1030754976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1439,7 +1439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b7af4f439d882a4b9276de7cc261657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 11400000, guid: 3643f92a6b2378b4b80180ca6e20c524, type: 2}
+  _gameData: {fileID: 11400000, guid: 3643f92a6b2378b4b80180ca6e20c524, type: 2}
 --- !u!114 &1046223329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1613,7 +1613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cffdc91f70a9adf41a16da0ffaf31667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentColor: 1
+  CurrentColor: 0
 --- !u!1 &1136885711
 GameObject:
   m_ObjectHideFlags: 0
@@ -1917,13 +1917,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28caa2e25cc05549ad9f982535a3593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allCards: []
-  gameData: {fileID: 11400000, guid: 3643f92a6b2378b4b80180ca6e20c524, type: 2}
-  NumberCard: {fileID: 3234777135164095293, guid: af1982a537b576d4bb3b6acf3e119629, type: 3}
-  ColorAction: {fileID: 5763453657378381624, guid: f0a3014441897004a9755f5cae73996b, type: 3}
-  WildCard: {fileID: 2034163405040174613, guid: 6721302c84a0cdf4593ff331c119e48f, type: 3}
-  WildDrawFour: {fileID: 6244333769923007177, guid: c2f19cb3a878f39499e8288156ddd583, type: 3}
-  CloseCardImage: {fileID: 799541449533731173, guid: fdd2fffdeaa645b409bd361abbd31d67, type: 3}
+  _allCards: []
+  _gameData: {fileID: 11400000, guid: 3643f92a6b2378b4b80180ca6e20c524, type: 2}
+  _numberCardPrefab: {fileID: 3234777135164095293, guid: af1982a537b576d4bb3b6acf3e119629, type: 3}
+  _colorActionPrefab: {fileID: 5763453657378381624, guid: f0a3014441897004a9755f5cae73996b, type: 3}
+  _wildCardPrefab: {fileID: 2034163405040174613, guid: 6721302c84a0cdf4593ff331c119e48f, type: 3}
+  _wildDrawFourPrefab: {fileID: 6244333769923007177, guid: c2f19cb3a878f39499e8288156ddd583, type: 3}
+  _closeCardImage: {fileID: 799541449533731173, guid: fdd2fffdeaa645b409bd361abbd31d67, type: 3}
 --- !u!222 &1205670444
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2446,7 +2446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c84357c77de2a545a048250f6e787b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameDataSo: {fileID: 11400000, guid: 3643f92a6b2378b4b80180ca6e20c524, type: 2}
+  _gameDataSo: {fileID: 11400000, guid: 3643f92a6b2378b4b80180ca6e20c524, type: 2}
 --- !u!1 &1540662404
 GameObject:
   m_ObjectHideFlags: 0
@@ -2559,25 +2559,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ae0b3e4fd6ae9479515a41760fd499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTesting: 0
-  playersCount: 0
-  aiPlayersPrefab: {fileID: 6817892816954819872, guid: 8dbb07991c38b064bad892762228029c, type: 3}
-  cardPullAnim: {fileID: 1176340703}
-  ChangeColorPanel: {fileID: 916387864}
-  EndPanel: {fileID: 1506726461}
-  PauseButton: {fileID: 1759308368}
-  PullButton: {fileID: 316473573}
-  SkipButton: {fileID: 1046223328}
-  gameDataSo: {fileID: 11400000, guid: 3643f92a6b2378b4b80180ca6e20c524, type: 2}
-  gameCanvas: {fileID: 1245762652}
-  aiPlayersPositions:
+  whichPlayerOnList: 0
+  _aiPlayersPositions:
   - {fileID: 2070794488}
   - {fileID: 1136885712}
   - {fileID: 480417392}
-  AllPlayers:
+  _allPlayers:
   - {fileID: 1981053235}
-  FinishEvent: {fileID: 11400000, guid: d432c2588c41d6345ab3da9b2364536f, type: 2}
-  whichPlayerOnList: 0
+  _pauseButton: {fileID: 1759308368}
+  _pullButton: {fileID: 316473573}
+  _skipButton: {fileID: 1046223328}
+  _aiPlayersPrefab: {fileID: 6817892816954819872, guid: 8dbb07991c38b064bad892762228029c, type: 3}
+  _cardPullAnim: {fileID: 1176340703}
+  _changeColorPanel: {fileID: 916387864}
+  _endPanel: {fileID: 1506726461}
+  _gameDataSo: {fileID: 11400000, guid: 3643f92a6b2378b4b80180ca6e20c524, type: 2}
+  _gameCanvas: {fileID: 1245762652}
+  _finishEvent: {fileID: 11400000, guid: d432c2588c41d6345ab3da9b2364536f, type: 2}
+  _isTesting: 0
+  _playersCount: 0
 --- !u!1 &1759308363
 GameObject:
   m_ObjectHideFlags: 0
@@ -2724,8 +2724,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aefc4fd94673f643a70747f287f70a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pausePanel: {fileID: 793465010}
-  gameData: {fileID: 11400000, guid: 3643f92a6b2378b4b80180ca6e20c524, type: 2}
+  _pausePanel: {fileID: 793465010}
+  _gameData: {fileID: 11400000, guid: 3643f92a6b2378b4b80180ca6e20c524, type: 2}
 --- !u!114 &1759308369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3128,9 +3128,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9822d353c41cae4b8e4e4a199791147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myCards: []
-  ColorPanel: {fileID: 916387864}
-  myImage: {fileID: -6954615962184996107, guid: eba309b469f23354ca968c83459b8f18, type: 3}
+  _cards: []
+  _colorPanel: {fileID: 916387864}
+  _image: {fileID: 0}
 --- !u!114 &1981053238
 MonoBehaviour:
   m_ObjectHideFlags: 0

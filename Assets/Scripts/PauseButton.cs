@@ -1,33 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class PauseButton : MonoBehaviour, IPointerEnterHandler
 {
-    [SerializeField] GameObject pausePanel;
-    [SerializeField] GameData gameData;
-    Button myButton;
-    bool amIEnable;
-    Image myImage;
+    [SerializeField] private GameObject _pausePanel;
+    [SerializeField] private GameData _gameData;
+
+    private Button _button;
+    private Image _image;
+    private bool _isEnable;
+    
     private void Awake()
     {
-        myButton = this.GetComponent<Button>();
-        myImage = this.GetComponent<Image>();
+        _button = this.GetComponent<Button>();
+        _image = this.GetComponent<Image>();
         Disable();
     }
     public void Enable()
     {
-        myButton.enabled = true;
-        amIEnable = true;
-        myImage.sprite = gameData.pauseEnable;
+        _button.enabled = true;
+        _isEnable = true;
+        _image.sprite = _gameData.pauseEnable;
     }
     public void Disable()
     {
-        myButton.enabled = false;
-        amIEnable = false;
-        myImage.sprite = gameData.pauseUnEnable;
+        _button.enabled = false;
+        _isEnable = false;
+        _image.sprite = _gameData.pauseUnEnable;
     }
     public void EndGame()
     {
@@ -36,17 +36,17 @@ public class PauseButton : MonoBehaviour, IPointerEnterHandler
 
     public void Stopgame()
     {
-        if(amIEnable)
+        if(_isEnable)
         {
-            if (pausePanel.activeSelf == true)
+            if (_pausePanel.activeSelf == true)
             {
-                pausePanel.SetActive(false);
+                _pausePanel.SetActive(false);
                 Sounds.Soundsinstance.SetMusicVolume(1);
                 Time.timeScale = 1f;
             }
             else
             {
-                pausePanel.SetActive(true);
+                _pausePanel.SetActive(true);
                 Sounds.Soundsinstance.SetMusicVolume(0.5f);
                 Time.timeScale = 0f;
             }
@@ -55,7 +55,7 @@ public class PauseButton : MonoBehaviour, IPointerEnterHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!amIEnable) return;
+        if (!_isEnable) return;
         Sounds.Soundsinstance.PlaySoundEffect(GameData.SoundEffects.ButtonHover);
     }
 }

@@ -1,46 +1,46 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class SkipRequestButton : MonoBehaviour, IPointerEnterHandler
 {
-    [SerializeField] GameData gameData;
-    Image myImage;
-    Button button;
-    bool amIEnable = false;
+    [SerializeField] private GameData _gameData;
+
+    private Image _image;
+    private Button _button;
+    private bool _isEnable = false;
 
     private void Awake()
     {
-        myImage = GetComponent<Image>();
-        button = this.GetComponent<Button>();
+        _image = GetComponent<Image>();
+        _button = this.GetComponent<Button>();
         Disable();
     }
     public void SkipRequest()
     {
-        if (amIEnable)
+        if (_isEnable)
         {
             StartCoroutine(SkipHandle());
         }
     }
     public void Enable()
     {
-        button.enabled = true;
-        amIEnable = true;
-        myImage.sprite = gameData.skipHandEnable;
+        _button.enabled = true;
+        _isEnable = true;
+        _image.sprite = _gameData.skipHandEnable;
     }
     public void Disable()
     {
-        button.enabled = false;
-        amIEnable = false;
-        myImage.sprite = gameData.skipHandUnenable;
+        _button.enabled = false;
+        _isEnable = false;
+        _image.sprite = _gameData.skipHandUnenable;
     }
     public void EndGame()
     {
         this.gameObject.SetActive(false);
     }
-    IEnumerator SkipHandle()
+    private IEnumerator SkipHandle()
     {
         GameManager.GameManagerInstance.ChangeTurn();
         yield return new WaitForSeconds(1);
@@ -49,7 +49,7 @@ public class SkipRequestButton : MonoBehaviour, IPointerEnterHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!amIEnable) return;
+        if (!_isEnable) return;
         Sounds.Soundsinstance.PlaySoundEffect(GameData.SoundEffects.ButtonHover);
     }
 }

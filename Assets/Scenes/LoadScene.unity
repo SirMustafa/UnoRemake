@@ -396,9 +396,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc7b9b1770ef484286d179c487829ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameDataSo: {fileID: 11400000, guid: 3643f92a6b2378b4b80180ca6e20c524, type: 2}
-  MusicSource: {fileID: 791776703}
-  SfxSource: {fileID: 791776704}
+  _gameDataSo: {fileID: 11400000, guid: 3643f92a6b2378b4b80180ca6e20c524, type: 2}
+  _musicSource: {fileID: 791776703}
+  _sfxSource: {fileID: 791776704}
 --- !u!4 &791776702
 Transform:
   m_ObjectHideFlags: 0

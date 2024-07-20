@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
 
@@ -12,7 +10,7 @@ public class NumberCard : Cards
 
     public void SetMySkin(int i)
     {
-        this.GetComponent<Image>().sprite = MySkin;
+        this.GetComponent<Image>().sprite = Skin;
         setMyNumbers(i);
     }
     void setMyNumbers(int myNumber)

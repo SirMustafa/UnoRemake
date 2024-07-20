@@ -435,7 +435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19983f395d517074ab03ca2f1241a85e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameDataSo: {fileID: 11400000, guid: 3643f92a6b2378b4b80180ca6e20c524, type: 2}
+  _gameDataSo: {fileID: 11400000, guid: 3643f92a6b2378b4b80180ca6e20c524, type: 2}
 --- !u!1 &89193711
 GameObject:
   m_ObjectHideFlags: 0
@@ -1158,11 +1158,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4509d0967eb39d448b27f806265f8ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainText: {fileID: 402743448}
-  buttons: {fileID: 651379519}
-  settingsPanel: {fileID: 2060242530}
-  musicSlider: {fileID: 559563226}
-  sfxSlider: {fileID: 1332700954}
+  _mainText: {fileID: 402743448}
+  _buttons: {fileID: 651379519}
+  _settingsPanel: {fileID: 2060242530}
+  _musicSlider: {fileID: 559563226}
+  _sfxSlider: {fileID: 1332700954}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2026,7 +2026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19983f395d517074ab03ca2f1241a85e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameDataSo: {fileID: 11400000, guid: 3643f92a6b2378b4b80180ca6e20c524, type: 2}
+  _gameDataSo: {fileID: 11400000, guid: 3643f92a6b2378b4b80180ca6e20c524, type: 2}
 --- !u!1 &1024030722
 GameObject:
   m_ObjectHideFlags: 0
@@ -3101,7 +3101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19983f395d517074ab03ca2f1241a85e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameDataSo: {fileID: 11400000, guid: 3643f92a6b2378b4b80180ca6e20c524, type: 2}
+  _gameDataSo: {fileID: 11400000, guid: 3643f92a6b2378b4b80180ca6e20c524, type: 2}
 --- !u!1 &1724853533
 GameObject:
   m_ObjectHideFlags: 0

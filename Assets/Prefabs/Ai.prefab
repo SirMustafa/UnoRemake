@@ -305,11 +305,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15020ff3b0eb1f34bbcaff9c1074b41d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myCards: []
-  Temp: []
-  gameDataSo: {fileID: 11400000, guid: 3643f92a6b2378b4b80180ca6e20c524, type: 2}
-  myId: 0
-  aiType: 0
+  _cards: []
+  _tempObjects: []
+  _gameDataSo: {fileID: 11400000, guid: 3643f92a6b2378b4b80180ca6e20c524, type: 2}
+  _aiType: 0
+  Id: 0
 --- !u!222 &2483579658712625205
 CanvasRenderer:
   m_ObjectHideFlags: 0

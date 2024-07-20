@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static NpcDialougeData;
@@ -8,8 +7,6 @@ using static NpcDialougeData;
 public class GameData : ScriptableObject
 {
     public int PlayerCount;
-    int i;
-
     public Sprite redNumber;
     public Sprite greenNumber;
     public Sprite blueNumber;
@@ -43,7 +40,7 @@ public class GameData : ScriptableObject
         Kid,
         Man,
         Nurse,
-        Oc,
+        Arab,
         Police,
         Rich,
         Thief,
@@ -58,12 +55,13 @@ public class GameData : ScriptableObject
     }
     public SoundEffects SoundEffectss;
     public PlayerTypes AiTypess;
-
     public List<NpcDialogueData> npcDialogueDataList;
     public List<AudioClip> Musics;
     public List<AudioClip> Effects;
+
     [SerializeField] List<Sprite> Sprites = new List<Sprite>();
     [SerializeField] List<Sprite> PlayerSprites = new List<Sprite>();
+
     private PlayerTypes[] aiTypesArray;
 
     private void OnEnable()
@@ -122,11 +120,11 @@ public class GameData : ScriptableObject
     { PlayerTypes.Kid, new List<string> { "Basladik Brawl Starsa", "Is this a candy? I'm coming right away", "Skibidi Toilet, Only in Ohio, Fanum Tax", "Roblox is better than Minecraft !", "No cap !?", "Shimmy shimmy yay, Shimmy yay" } },
     { PlayerTypes.Man, new List<string> { "Hahaha, women", "Real men wear pink.. on Wednesdays.", "I bench-pressed my ego.", "Add me on Ig bro @SirMustafa", "I'm all in, bro!", "Im smarter, Im stronger ah, IM BETTER!!" } },
     { PlayerTypes.Nurse, new List<string> { "Stay healthy, play happy!", "Blood is red, cards is blue", "It won't hurt at all", "Let's inject some fun into this game!", "IV drip of good luck coming up!", "No cheating, doctor's orders!" } },
-    { PlayerTypes.Oc, new List<string> { "Habibi habibiii", "My camel's faster than your Ferrari", "SUBHANALLAH MASALLAH !", "Let's race to victory!", "I am a very good bad boy", "Cards and shisha, a perfect combo." } },
+    { PlayerTypes.Arab, new List<string> { "Habibi habibiii", "My camel's faster than your Ferrari", "SUBHANALLAH MASALLAH !", "Let's race to victory!", "I am a very good bad boy", "Cards and shisha, a perfect combo." } },
     { PlayerTypes.Police, new List<string> { "Freeze! You're under arrest for fun!", "Got my eyes on you, no cheating!", "Serve and protect the cards!", "Don't make me write you a ticket.", "This game is under surveillance.", "Watch out!" } },
     { PlayerTypes.Rich, new List<string> { "Winning is just a luxury I afford.", "Gambling is everything", "Keep gambling", "Money talks, and so do I.", "I don't play, I invest.", "Champagne for the winner, that's me!" } },
     { PlayerTypes.Thief, new List<string> { "Where is your cards", "In and out, no one will notice!", "Steal timeee", "Cards disappear like magic.", "I'm here for the big heist.", "Let me show you a sleight of hand." } },
-    { PlayerTypes.Woman, new List<string> { "Femine power", "If I can't win, I'll get married", "Swiftieee <33", "Slay the game, ladies!", "My nails are as sharp as my strategy.", "Let's break the glass ceiling, card by card." } },
+    { PlayerTypes.Woman, new List<string> { "Femine power",  "Swiftieee <33", "Slay the game, ladies!", "My nails are as sharp as my strategy.", "Let's break the glass ceiling, card by card." } },
     };
 
     public List<string> GetDialogues(PlayerTypes aiType)

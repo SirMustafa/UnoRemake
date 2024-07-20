@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ColorChange : MonoBehaviour
 {
-    public Cards.CardColor currentColor;
+    public Cards.CardColor CurrentColor;
     public void ChangeCardColor()
     {
-        MidPlace.MidPlaceInstance.UpdateCurrentColor(currentColor);
+        MidPlace.MidPlaceInstance.UpdateCurrentColor(CurrentColor);
         this.transform.parent.gameObject.SetActive(false);
     }
 }

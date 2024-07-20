@@ -6,17 +6,18 @@ using UnityEngine.UI;
 public class MidColor : MonoBehaviour
 {
     public static MidColor MidColorInstance;
-    Image myImage;
-    private Dictionary<Cards.CardColor, Color> colorDictionary;
+
+    private Image _image;
+    private Dictionary<Cards.CardColor, Color> _colorDictionary;
 
     private void Awake()
     {
         MidColorInstance = this;
-        myImage = GetComponent<Image>();
+        _image = GetComponent<Image>();
     }
     private void Start()
     {
-        colorDictionary = new Dictionary<Cards.CardColor, Color>
+        _colorDictionary = new Dictionary<Cards.CardColor, Color>
         {
             { Cards.CardColor.Red, HexToColor("#B63441") },
             { Cards.CardColor.Green, HexToColor("#76A646") },
@@ -43,6 +44,6 @@ public class MidColor : MonoBehaviour
     }
     public void ChangeMyColor(Cards.CardColor newColor)
     {
-        myImage.color = colorDictionary[newColor];
+        _image.color = _colorDictionary[newColor];
     }
 }

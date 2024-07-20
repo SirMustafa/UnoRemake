@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.UI;
 
 public class NumberActionCard : Cards
@@ -12,7 +9,6 @@ public class NumberActionCard : Cards
 
     public void SetMySkin()
     {
-        this.GetComponent<Image>().sprite = MySkin;
-
+        this.GetComponent<Image>().sprite = Skin;
     }
 }

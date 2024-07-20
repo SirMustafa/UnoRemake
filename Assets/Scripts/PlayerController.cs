@@ -1,5 +1,3 @@
-using DG.Tweening;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,26 +6,27 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour, IDropHandler, ISetStates
 {
     public static PlayerController PlayerControllerinstance;
-    [SerializeField] List<GameObject> myCards = new List<GameObject>();
-    [SerializeField] GameObject ColorPanel;
-    [SerializeField] Sprite myImage;
+
+    [SerializeField] private List<GameObject> _cards = new List<GameObject>();
+    [SerializeField] private GameObject _colorPanel;
+    [SerializeField] private Sprite _image;
 
     private void Awake()
     {
         PlayerControllerinstance = this;
     }
 
-    public void pullCard()
+    public void PullCard()
     {
         GameObject card = CardPool.CardPoolInstance.RandomCard();
         Cards cardsComponent = card.GetComponent<Cards>();
-        myCards.Add(card);
+        _cards.Add(card);
         addCardOnUi(card);
-        cardsComponent.playerHand = this.transform;
-        cardsComponent.isInteractable = true;
+        cardsComponent.PlayerHand = this.transform;
+        cardsComponent.IsInteractable = true;
     }
 
-    void addCardOnUi(GameObject card)
+    private void addCardOnUi(GameObject card)
     {
         RectTransform rectTransform = card.GetComponent<RectTransform>();
         rectTransform.SetParent(this.transform, false);
@@ -38,37 +37,37 @@ public class PlayerController : MonoBehaviour, IDropHandler, ISetStates
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (eventData.pointerDrag.GetComponent<Cards>().isInteractable == false) return;
+        if (eventData.pointerDrag.GetComponent<Cards>().IsInteractable == false) return;
         eventData.pointerDrag.transform.SetParent(this.transform, false);
     }
 
-    public void playTurn()
+    public void PlayTurn()
     {
-        foreach (GameObject card in myCards)
+        foreach (GameObject card in _cards)
         {
-            card.GetComponent<Cards>().isInteractable = true;
+            card.GetComponent<Cards>().IsInteractable = true;
             card.GetComponent<Image>().color = Color.white;
         }
     }
     public void stopPlay()
     {
-        foreach (GameObject card in myCards)
+        foreach (GameObject card in _cards)
         {
-            card.GetComponent<Cards>().isInteractable = false;
+            card.GetComponent<Cards>().IsInteractable = false;
             card.GetComponent<Image>().color = Color.grey;
         }
     }
 
-    public void chooseColor()
+    public void ChooseColor()
     {
-        ColorPanel.SetActive(true);
+        _colorPanel.SetActive(true);
     }
     public void removecardfromMycards(GameObject card)
     {
-        myCards.Remove(card);
-        if (myCards.Count == 0)
+        _cards.Remove(card);
+        if (_cards.Count == 0)
         {
-            GameManager.GameManagerInstance.EndGame(myImage, "You");
+            GameManager.GameManagerInstance.EndGame(_image, "You");
         }
     }
 
